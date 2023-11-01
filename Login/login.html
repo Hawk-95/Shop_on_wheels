@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('login-images/wepik-export-20231101090922n2Vg.jpeg'); /* Set your background image here */
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #login-box {
+            background-color: rgba(255, 255, 255, 0.9); /* Background color with transparency for the blur effect */
+            backdrop-filter: blur(500px); /* Apply the blur effect */
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .option-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .option-button {
+            flex: 1;
+            padding: 10px;
+            background-color: yellow;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+
+        .option-button:hover {
+            background-color: yellowgreen;
+        }
+
+        .input-fields {
+            text-align: left;
+        }
+
+        .input-fields label {
+            display: block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .input-fields input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .buttons button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: yellow;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .buttons button:hover {
+            background-color: yellowgreen;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .social-button {
+            flex: 1;
+            padding: 10px;
+            background-color: yellow;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+
+        .social-button:hover {
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-box">
+        <h1>Login</h1>
+        <div class="option-buttons">
+            <button class="option-button" id="username-option">Username or Email</button>
+            <button class="option-button" id="mobile-option">Mobile OTP</button>
+            <button class="option-button" id="forgot-option">Forget Password</button>
+        </div>
+
+        <div class="input-fields" id="username-fields">
+            <label for="username">Email/UserName:</label>
+            <input type="text" id="username" />
+            <label for="password">Password:</label>
+            <input type="password" id="password" />
+        </div>
+
+        <div class="input-fields" id="mobile-fields" style="display: none;">
+            <label for="mobile-number">Mobile Number:</label>
+            <input type="text" id="mobile-number" />
+            <div class="buttons">
+                <button id="get-otp">GET OTP</button>
+                <button id="resend-otp">Resend OTP</button>
+            </div>
+            <label for="enter-otp">Enter OTP:</label>
+            <input type="text" id="enter-otp" />
+        </div>
+
+        <div class="input-fields" id="forgot-fields" style="display: none;">
+            <label for="reset-email">Enter Mobile or Email Address:</label>
+            <input type="text" id="reset-email" />
+            <label for="reset-otp">Enter OTP:</label>
+            <input type="text" id="reset-otp" />
+            <div class="buttons">
+                <button id="reset-password">Reset Password</button>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button id="login-button">Login</button>
+        </div>
+
+        <div class="social-buttons">
+            <button class="social-button" id="google-button">Login with Google</button>
+            <button class="social-button" id="facebook-button">Login with Facebook</button>
+        </div>
+    </div>
+
+    <script>
+        const usernameOption = document.getElementById('username-option');
+        const mobileOption = document.getElementById('mobile-option');
+        const forgotOption = document.getElementById('forgot-option');
+        const usernameFields = document.getElementById('username-fields');
+        const mobileFields = document.getElementById('mobile-fields');
+        const forgotFields = document.getElementById('forgot-fields');
+        const loginButton = document.getElementById('login-button');
+
+        usernameOption.addEventListener('click', function () {
+            usernameFields.style.display = 'block';
+            mobileFields.style.display = 'none';
+            forgotFields.style.display = 'none';
+        });
+
+        mobileOption.addEventListener('click', function () {
+            usernameFields.style.display = 'none';
+            mobileFields.style.display = 'block';
+            forgotFields.style.display = 'none';
+        });
+
+        forgotOption.addEventListener('click', function () {
+            usernameFields.style.display = 'none';
+            mobileFields.style.display = 'none';
+            forgotFields.style.display = 'block';
+        });
+
+        usernameOption.addEventListener('click', function () {
+            usernameFields.style.display = 'block';
+            // Hide other fields
+        });
+
+        // Add similar event listeners for the "Mobile OTP" and "Forget Password" options
+
+        loginButton.addEventListener('click', function () {
+            const usernameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+            const mobileNumberInput = document.getElementById('mobile-number').value;
+            const enterOtpInput = document.getElementById('enter-otp').value;
+            const resetEmailInput = document.getElementById('reset-email').value;
+            const resetOtpInput = document.getElementById('reset-otp').value;
+
+            let activeSection = null;
+    
+            if (usernameFields.style.display === 'block') {
+                activeSection = usernameFields;
+            } else if (mobileFields.style.display === 'block') {
+                activeSection = mobileFields;
+            } else if (forgotFields.style.display === 'block') {
+                activeSection = forgotFields;
+            }
+
+            // Check for empty fields within the active section
+            const inputsInActiveSection = activeSection.querySelectorAll('input');
+            const hasEmptyFields = Array.from(inputsInActiveSection).some(input => input.value.trim() === '');
+
+            if (hasEmptyFields) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            if (usernameFields.style.display === 'block') {
+            // Your email and username verification logic here
+            } else if (mobileFields.style.display === 'block') {
+            // Your mobile OTP verification logic here
+            } else if (forgotFields.style.display === 'block') {
+            // Your password reset logic here
+            }
+        });
+
+
+        // Function to validate email format
+        function isValidEmail(email) {
+            const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+            return emailPattern.test(email);
+        }
+
+    </script>
+</body>
+</html>
